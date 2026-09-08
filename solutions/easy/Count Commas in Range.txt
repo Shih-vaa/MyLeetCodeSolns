@@ -1,0 +1,13 @@
+// Title: Count Commas in Range
+            // Difficulty: Easy
+            // Language: Python3
+            // Link: https://leetcode.com/problems/count-commas-in-range/
+
+class Solution:
+    def countCommas(self, n: int) -> int:
+        total = 0
+        p = 1000
+        while p <= n:
+            total += n - p + 1
+            p *= 1000
+        return total
