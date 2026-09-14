@@ -3,14 +3,13 @@
             // Language: Java
             // Link: https://leetcode.com/problems/maximum-score-of-non-overlapping-intervals/
 
-        for (int p = 0; p < n; p++) rights[p] = iv[order[p]][1];
+class Solution {
+    public int[] maximumWeight(List<List<Integer>> intervals) {
+        int n = intervals.size();
+        int[][] iv = new int[n][3];
+        for (int i = 0; i < n; i++)
+            for (int c = 0; c < 3; c++) iv[i][c] = intervals.get(i).get(c);
 
-        long[] prevScore = new long[n + 1];
-        int[][] prevIds = new int[n + 1][0];
-        for (int k = 0; k < 4; k++) {
-            long[] curScore = new long[n + 1];
-            int[][] curIds = new int[n + 1][0];
-            for (int p = 1; p <= n; p++) {
-                int i = order[p - 1];  // take next interval
-                int l = iv[i][0], w = iv[i][2];
-                int lo = 0, hi = n;  // lower_bound: intervals ending before l
+        Integer[] order = new Integer[n];
+        for (int i = 0; i < n; i++) order[i] = i;
+        Arrays.sort(order, (a, b) -> iv[a][1] - iv[b][1]);
